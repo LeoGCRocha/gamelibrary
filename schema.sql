@@ -1,4 +1,4 @@
-create table usuario(
+create table jogo(
     id int primary key auto_increment,
     nome varchar(500) not null,
     imagemDir text,
