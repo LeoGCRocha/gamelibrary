@@ -31,3 +31,8 @@ create table compra(
     constraint `fk_compra_jogo` foreign key(id_jogo) references jogo(id),
     constraint `fk_compra_id` foreign key(id_usuario) references usuario(id)
     );
+create table categoria(
+    id int primary key auto_increment,
+    `id_jogo` int not null,
+    constraint `fk_categoria_jogo` foreign key(`id_jogo`) references jogo(id)
+    );
