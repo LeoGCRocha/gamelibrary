@@ -1,7 +1,7 @@
 create table usuario(
     id int primary key auto_increment,
     nome varchar(500) not null,
-    imagemDir text default 'no-game-img.jpg',
+    imagemDir text,
     preco numeric(5,2) not null,
     lancamento int not null ,
     classind enum ('l','10','12','14','16','18') not null,
