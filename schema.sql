@@ -21,3 +21,10 @@ create table usuario(
     wallet numeric(7,2) not null,
     super boolean default false
     );
+create table compra(
+    id int primary key auto_increment, 
+    preco_tot numeric(7,2) not null,
+    metodo varchar(100) not null,
+    id_jogo int not null,
+	constraint 'compraJogoFk' foreign key(id_jogo) references jogo(id)
+	);
