@@ -18,5 +18,6 @@ create table usuario(
     senha text not null, 
     sexo enum('masculino','feminino'),
     telefone varchar(13),
-    wallet numeric(7,2) not null
+    wallet numeric(7,2) not null,
+    super boolean default false
     );
