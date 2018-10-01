@@ -26,5 +26,7 @@ create table compra(
     preco_tot numeric(7,2) not null,
     metodo varchar(100) not null,
     `id_jogo` int not null,
-    constraint `fk_compra_jogo` foreign key(id_jogo) references jogo(id)
+    `id_usuario`int not null,
+    constraint `fk_compra_jogo` foreign key(id_jogo) references jogo(id),
+    constraint `fk_compra_id` foreign key(id_usuario) references usuario(id)
     );
