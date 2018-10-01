@@ -9,7 +9,8 @@ create table jogo(
     linux boolean default false,
     mac boolean default false,
     desenvolvedora varchar(500) not null,
-    distribuidor varchar(500) not null
+    distribuidor varchar(500) not null,
+    promocao int default 0
    	);
 create table usuario(
     id int primary key auto_increment,
