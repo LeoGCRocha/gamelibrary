@@ -3,7 +3,7 @@ create table usuario(
     nome varchar(500) not null,
     imagemDir text,
     preco numeric(5,2) not null,
-    lancamento int not null ,
+    lancamento date not null ,
     classind enum ('l','10','12','14','16','18') not null,
     windows boolean default true,
     linux boolean default true,
