@@ -27,6 +27,7 @@ h1, h2, h3, h4, h5, h6, p, span, pre, label, input, a {
 	flex-direction: column;
 	text-align: center;
 	width: 100%;
+	border: none;
 }
 
 body {
@@ -37,23 +38,10 @@ ul.sidenav {
 	max-width: 80vw;
 }
 
-#backimg {
-	width: 100%;
-	max-height: 100vh;
-	margin: auto;
-	position: absolute;
-	z-index: -2;
-}
-#backmask {
-	position: absolute;
-	width: 100%;
-	height: 100vh;
-	background-image: linear-gradient(to bottom, transparent, black);
-	z-index: -1;
-}
 #sidenavlogo {
 	margin-top: 2em;
 }
+
 #sidenavhtext {
 	margin-top: 0;
 	margin-left: 1em;
@@ -61,6 +49,28 @@ ul.sidenav {
 	word-break: normal;
 }
 
+#topsection{
+	position: relative;
+	top: 0;
+	height: 75vh;
+}
+
+#backimg {
+	width: 100%;
+	max-height: 100vh;
+	margin: auto;
+	position: absolute;
+	z-index: -2;
+}
+
+#backmask {
+  position: absolute;
+	width: 100%;
+	height: 100vh;
+	background-image: linear-gradient(to bottom, transparent, black);
+	z-index: -1;
+}
+
 #mainsection {
-	margin-top: auto; /* TODO */
+	margin-top: none; /* TODO */
 }
