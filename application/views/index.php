@@ -50,7 +50,7 @@
 	</ul>
 
 	<img id="backimg" src="<?php echo base_url();?>/static/res/back.jpg">
-	<span id="backmask"></span>	
+	<span id="backmask"></span>
 
 	<div class="section wrapper" id="mainsection">
 		<h1>Só a ponta do teste</h1>
