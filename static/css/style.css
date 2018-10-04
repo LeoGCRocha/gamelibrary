@@ -1,76 +1,75 @@
-h1, h2, h3, h4, h5, h6, p, span, pre, label, input, a {
-	color: white;
-	text-decoration: none;
-}
-
-.brand-logo img {
-	position: absolute;
-	top: 4px;
-	left: 207px;
-	width: 56px;
-	height: 56px;
-}
-
-@media only screen and (max-width: 600px) {
-	.brand-logo img {
-		top: 3px;
-		left: 185px;
-		height: 50px;
-		width: 50px;
-	}
-}
-
-.wrapper {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	text-align: center;
-	width: 100%;
-	border: none;
-}
-
 body {
-	min-height: 100vh;
+  min-height: 100vh;
 }
-
-ul.sidenav {
-	max-width: 80vw;
+body .wrapper, body .wrapper2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  border: none;
 }
-
-#sidenavlogo {
-	margin-top: 2em;
+body .wrapper2 {
+  flex-direction: row;
 }
-
-#sidenavhtext {
-	margin-top: 0;
-	margin-left: 1em;
-	margin-right: 1em;
-	word-break: normal;
+body .wrapper2 > * {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
-
-#topsection{
-	position: relative;
-	top: 0;
-	height: 75vh;
-}
-
-#backimg {
-	width: 100%;
-	max-height: 100vh;
-	margin: auto;
-	position: absolute;
-	z-index: -2;
-}
-
-#backmask {
+body .brand-logo img {
   position: absolute;
-	width: 100%;
-	min-height: 100vh;
-	background-image: linear-gradient(to bottom, transparent, black);
-	z-index: -1;
+  top: 4px;
+  left: 207px;
+  width: 56px;
+  height: 56px;
+}
+@media only screen and (max-width: 600px) {
+  body .brand-logo img {
+    top: 3px;
+    left: 185px;
+    height: 50px;
+    width: 50px;
+  }
+}
+body ul.sidenav {
+  max-width: 80vw;
+}
+body ul.sidenav #sidenavlogo {
+  margin-top: 2em;
+}
+body ul.sidenav #sidenavhtext {
+  margin-top: 0;
+  margin-left: 1em;
+  margin-right: 1em;
+  word-break: normal;
+}
+body #topsection {
+  position: relative;
+  top: 0;
+  height: 75vh;
+}
+body #topsection #backimg {
+  width: 100%;
+  max-height: 100vh;
+  margin: auto;
+  position: absolute;
+  z-index: -2;
+}
+body #topsection #backmask {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(to bottom, transparent, black);
+  z-index: -1;
+}
+body #mainsection {
+  margin-top: none;
+}
+body #mainsection .carousel-item img {
+  object-fit: cover;
+  width: auto;
+  height: 100%;
 }
 
-#mainsection {
-	margin-top: none; /* TODO */
-}
+/*# sourceMappingURL=style.css.map */
