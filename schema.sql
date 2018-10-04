@@ -20,7 +20,8 @@ create table usuario(
     sexo enum('masculino','feminino'),
     telefone varchar(13),
     wallet numeric(7,2) not null,
-    super boolean default false
+    super boolean default false,
+    constraint 'usuario_email_u' unique(email)
 );
 create table compra(
     id int primary key auto_increment,

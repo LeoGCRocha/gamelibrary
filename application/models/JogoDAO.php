@@ -1,22 +1,22 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class JogoDAO extends CI_Model {
-    
+
     public function __construct(){
         parent::__construct();
         $this->load->database();
     }
-    
+
     public function insert($dados=NULL) {
 
         if($dados) {
-            $this->db->insert('jogo', $dados);   
+            $this->db->insert('jogo', $dados);
         }
-        
+
     }
 
     public function fetchall($sort='id', $order='asc') {
-    
+
         $this->db->order_by($sort, $order);
         $query = $this->db->get('jogo');
 
@@ -35,7 +35,7 @@ class JogoDAO extends CI_Model {
         if($query->num_rows() > 0) {
             return $query->result_array()[0];
         }
-        
+
         return null;
 
     }
