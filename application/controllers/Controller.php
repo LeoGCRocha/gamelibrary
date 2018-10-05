@@ -118,7 +118,8 @@ class Controller extends CI_Controller {
 			}
 
 			// entregue ;)
-			//redirect('controller/index');
+			redirect('controller/index');
+			
 		} else {
 			// o redirect eh o mesmo, mas poderia ser diferente...
 			redirect('controller/index');
