@@ -16,20 +16,12 @@ create table usuario(
     id int primary key auto_increment,
     nome varchar(500) not null,
     email varchar(100) not null,
-<<<<<<< HEAD
-    senha char(64) not null, 
-    sexo enum('masculino','feminino'),
-    telefone varchar(13),
-    wallet numeric(7,2) not null,
-    super boolean default false
-=======
     senha char(64) not null,
     sexo enum('masculino','feminino'),
     telefone varchar(13),
     wallet numeric(7,2) not null,
     super boolean default false,
     constraint 'usuario_email_u' unique(email)
->>>>>>> 2ad9de7e9b251e89a3da66701d5810c3c1a1f3b7
 );
 create table compra(
     id int primary key auto_increment,
