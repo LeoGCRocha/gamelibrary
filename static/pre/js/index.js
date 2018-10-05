@@ -5,6 +5,7 @@ $(document).ready(function() {
 	$('.modal').modal();
 	$('.parallax').parallax();
 	$('.sidenav').sidenav();
+	$('.tabs').tabs();
 
 	function setTopSectionSize() {
 

@@ -18,20 +18,65 @@
 			<div class="nav-wrapper">
 				<a href="<?php echo site_url('controller/index'); ?>" class="brand-logo left">
 					Game Library
-                    <img src="<?php echo base_url(); ?>/static/res/logo.png">
+          <img src="<?php echo base_url(); ?>/static/res/logo.png">
 				</a>
-				<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
-				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li>
-						<a href="<?php echo site_url('controller/login_form'); ?>"><i class="material-icons left">person</i>Login</a>
-					</li>
-					<li>
-						<a class="modal-trigger" href="#cadastromodal"><i class="material-icons left">person_add</i>Cadastro</a>
-					</li>
-				</ul>
+				<?php
+				if ($user || $is_admin) { ?>
+					<ul id="nav-mobile" class="right hide-on-med-and-down">
+						<li>
+							<a href="<?php echo site_url('controller/deslogar'); ?>"><i class="material-icons left">close</i>Deslogar</a>
+						</li>
+					</ul>
+				<?php
+				} else { ?>
+					<!-- Se entrou aqui é pq não estava logado, logo tem que ter as opções -->
+					<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+					<ul id="nav-mobile" class="right hide-on-med-and-down">
+						<li>
+							<a class="modal-trigger" href="#loginmodal"><i class="material-icons left">person</i>Login</a>
+						</li>
+						<li>
+							<a class="modal-trigger" href="#cadastromodal"><i class="material-icons left">person_add</i>Cadastro</a>
+						</li>
+					</ul>
+				<?php }
+				?>
 			</div>
 		</div>
 	</nav>
+
+	<!-- Login modal -->
+	<div id="loginmodal" class="modal">
+		<div class="modal-content">
+
+			<div class="wrapper2">
+				<h4>Login</h4>
+				<a href="#!" class="btn modal-close purple darken-4 waves-effect waves-light"><i class="material-icons">close</i></a>
+			</div>
+
+			<br>
+
+			<form action="<?php echo site_url('controller/do_login'); ?>" method="post">
+
+				<div class="input-field">
+					<input id="l-email" name="email" type="text" class="validate" required>
+					<label for="l-email">Email</label>
+				</div>
+
+				<div class="input-field">
+					<input id="l-login" name="pass" type="password" class="validate" required>
+					<label for="l-login">Senha</label>
+				</div>
+
+				<div class="wrapper">
+					<button class="btn-large" type="submit">Logar<i class="material-icons right">send</i></button>
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+	<!-- Fim login modal -->
 
 	<div id="cadastromodal" class="modal">
 		<div class="modal-content">

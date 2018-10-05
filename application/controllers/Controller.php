@@ -39,10 +39,13 @@ class Controller extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()	{
+		$this->load->library('session');
 		$this->load->model('JogoDAO', 'jdao');
 		$v_data = [];
+		$v_data['user'] = $this->session->user;
+		$v_data['is_admin'] = $this->session->is_admin;
 		$v_data['exhib'] = $this->jdao->fetchall();
-		$this->load->view('index');
+		$this->load->view('index',$v_data);
 	}
 
 	// Rota post pra efetuar o cadastro
@@ -85,19 +88,72 @@ class Controller extends CI_Controller {
 
 			// taca
 			$this->load->model('UsuarioDAO', 'udao');
-			$this->udao->insert($dados);
+			$this->udao->insert($user_data);
+
+			// configs email
+			$config = Array(
+			    'protocol' =>  'smtp',
+			    'smtp_host' => 'ssl://smtp.googlemail.com',
+			    'smtp_port' => 465,
+			    'smtp_user' => 'webdevelopertdeveloper@gmail.com',
+			    'smtp_pass' => 'webdeveloper123',
+			    'mailtype'  => 'html',
+				'smtp_timeout' => '4',
+			    'charset'   => 'utf-8'
+			);
+			$this->load->library('email',$config);
+
+			$this->email->set_newline("\r\n");
+
+			// enviando o email
+			$this->email->from('webdevelopertdeveloper@gmail.com','admin');
+			$this->email->to($user_data['email']);
+			$this->email->subject('Mensagem Automática: Inscrição Gamelibray');
+			$this->email->message('Registrou no site com sucesso :3');
+
+			if ($this->email->send()){
+				echo 'E-mail enviado com sucesso!';
+			} else{
+				echo $this->email->print_debugger();
+			}
 
 			// entregue ;)
-			redirect('controller/index');
-
+			//redirect('controller/index');
 		} else {
-
 			// o redirect eh o mesmo, mas poderia ser diferente...
 			redirect('controller/index');
-
 		}
 
 	}
 
+	public function do_login(){
+		$this->load->helper('url');
+		$this->load->library('session');
+		if ($this->input->post() && (!$this->session->user && !$this->session->admin)){
+			$this->load->library('form_validation');
+			$user_info = $this->input->post();
+			// validação formulario
+			$this->form_validation->set_rules('email', 'Email', 'required|trim|max_length[100]|valid_email');
+			$this->form_validation->set_rules('senha', 'Senha', 'required');
+			// carregando usuarios
+			$this->load->model('UsuarioDAO', 'udao');
+			$data = $this->udao->fetchall();
+			/* Verifica senha digita e verifica se é um ADM ou USUARIO  */
+			foreach ($data as $userAt) {
+				if ($userAt['email'] == $user_info['email']){
+					$this->load->helper('security');
+					$user_info['pass'] = do_hash($user_info['pass'], 'sha256');
+					if ($user_info['pass'] == $userAt['senha']){
+						if ($userAt['super']) $this->session->is_admin = $userAt;
+						else $this->session->user = $userAt;
+					}
+				}
+			}
+			redirect('controller/index');
+		}else{
+			// o redirect eh o mesmo, mas poderia ser diferente...
+			redirect('controller/index');
+		}
+	}
 
 }
