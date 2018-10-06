@@ -13,16 +13,14 @@ create table jogo(
     promocao int default 0
 );
 create table usuario(
-    id int primary key auto_increment,
-    nome varchar(500) not null,
-    email varchar(100) not null,
-    senha char(64) not null,
-    sexo enum('masculino','feminino'),
-    telefone varchar(13),
-    wallet numeric(7,2) not null,
-    super boolean default false,
-    constraint 'usuario_email_u' unique(email)
-);
+  id int primary key auto_increment,
+  nome varchar(500) not null,
+  email varchar(100) not null unique,
+  senha char(64) not null, sexo enum('masculino','feminino'),
+  telefone varchar(13),
+  wallet numeric(7,2) not null,
+  super boolean default false
+)
 create table compra(
     id int primary key auto_increment,
     preco_tot numeric(7,2) not null,

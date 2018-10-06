@@ -89,42 +89,41 @@ class Controller extends CI_Controller {
 			// taca
 			$this->load->model('UsuarioDAO', 'udao');
 			$this->udao->insert($user_data);
+
 			// configs email
 			$config = Array(
-			    'protocol' => 'smtp',
+			    'protocol' =>  'smtp',
 			    'smtp_host' => 'ssl://smtp.googlemail.com',
 			    'smtp_port' => 465,
-			    'smtp_user' => '',
-			    'smtp_pass' => '',
+			    'smtp_user' => 'webdevelopertdeveloper@gmail.com',
+			    'smtp_pass' => 'webdeveloper123',
 			    'mailtype'  => 'html',
 					'smtp_timeout' => '4',
-			    'charset'   => 'iso-8859-1'
+			    'charset'   => 'utf-8'
 			);
 			$this->load->library('email',$config);
 			$this->email->set_newline("\r\n");
 			// enviando o email
-			$this->email->from('gideonveloz@gmail.com','admin');
+			$this->email->from('webdevelopertdeveloper@gmail.com','admin');
 			$this->email->to($user_data['email']);
 			$this->email->subject('Mensagem Automática: Inscrição Gamelibray');
-			$this->email->message('Registrou no site com sucesso :3');
+			$this->email->message('Obrigado por ser registrar em nosso site. ');
 			if ($this->email->send()){
-				echo 'E-mail enviado com sucesso!';
+				// entregue ;)
+				redirect('controller/index');
 			} else{
 				echo $this->email->print_debugger();
 			}
-			// entregue ;)
-			redirect('controller/index');
 		} else {
 			// o redirect eh o mesmo, mas poderia ser diferente...
 			redirect('controller/index');
 		}
-
 	}
 
 	public function do_login(){
 		$this->load->helper('url');
 		$this->load->library('session');
-		if ($this->input->post() && (!$this->session->user && !$this->session->admin)){
+		if ($this->input->post() && (!$this->session->user && !$this->session->is_admin )){
 			$this->load->library('form_validation');
 			$user_info = $this->input->post();
 			// validação formulario
@@ -146,9 +145,46 @@ class Controller extends CI_Controller {
 			}
 			redirect('controller/index');
 		}else{
-			// o redirect eh o mesmo, mas poderia ser diferente...
 			redirect('controller/index');
 		}
 	}
 
+	public function logout(){
+		$this->load->helper('url');
+		$this->load->library('session');
+		// desloga, se estivar logado ;)
+		if($this->session->user) $this->session->unset_userdata('user');
+		elseif ($this->session->is_admin){
+			$this->session->unset_userdata('is_admin');
+		}
+		redirect('controller/index');
+	}
+
+	public function admin(){
+		$this->load->helper('url');
+		$this->load->library('session');
+		$aux['admin'] = $this->session->is_admin;
+		if($this->session->is_admin )	$this->load->view('admin',$aux);
+		// se não for admin, vai de beise
+		else redirect('controller/index');
+	}
+
+	public function salvar(){
+		$this->load->library('session');
+		$this->load->helper('url');
+		if ($this->input->post() && $this->session->is_admin){
+
+			$this->load->library("form_validation");
+			$this->form_validation->set_rules('nome', 'Nome', 'required|trim|max_length[500]');
+			$this->form_validation->set_rules('email', 'Email', 'required|trim|max_length[100]|valid_email');
+			$this->form_validation->set_rules('senha', 'Senha', 'required');
+			$this->form_validation->set_rules('sexo', 'Sexo', 'required|in_list[masculino,feminino]');
+			$this->form_validation->set_rules('telefone', 'Telefone', 'required|trim|max_length[13]|numeric');
+
+			$this->load->model('UsuarioDAO', 'udao');
+			$user_data = $this->input->post();
+			$this->udao->update($user_data);
+		}
+		redirect('controller/logout');
+	}
 }

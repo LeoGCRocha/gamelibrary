@@ -21,14 +21,19 @@
           <img src="<?php echo base_url(); ?>/static/res/logo.png">
 				</a>
 				<?php
-				if ($user || $is_admin) { ?>
+				if ($user) { ?>
 					<ul id="nav-mobile" class="right hide-on-med-and-down">
 						<li>
-							<a href="<?php echo site_url('controller/deslogar'); ?>"><i class="material-icons left">close</i>Deslogar</a>
+							<a href="<?php echo site_url('controller/logout'); ?>"><i class="material-icons left">close</i>Deslogar</a>
 						</li>
 					</ul>
-				<?php
-				} else { ?>
+			<?php
+			} elseif($is_admin){  ?>
+				<script>
+					window.location.replace("<?php echo site_url('controller/admin') ?>");
+				</script>
+			<?php }
+				else { ?>
 					<!-- Se entrou aqui é pq não estava logado, logo tem que ter as opções -->
 					<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
 					<ul id="nav-mobile" class="right hide-on-med-and-down">

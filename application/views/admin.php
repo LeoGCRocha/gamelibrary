@@ -16,10 +16,20 @@
 			<div class="nav-wrapper">
 				<a href="<?php echo site_url('controller/index'); ?>" class="brand-logo left">
 					Game Library
-                    <img src="<?php echo base_url(); ?>/static/res/logo.png">
+          <img src="<?php echo base_url(); ?>/static/res/logo.png">
 				</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down"></ul>
 			</div>
+			<?php
+				if($this->session->is_admin){ ?>
+					<ul id="nav-mobile" class="right hide-on-med-and-down">
+						<li>
+							<a href="<?php echo site_url('controller/logout'); ?>"class="waves-effect waves-light btn-small">
+								Deslogar
+							</a>
+						</li>
+					</ul>
+				<?php	} ?>
 		</div>
 	</nav>
 
@@ -37,14 +47,61 @@
 				 <img src="http://newnormative.com/wp-content/uploads/2018/09/thewitcher3.jpg">
 			 </div>
 			 <a><img id="img-perfil" class="circle" src="http://www.tntwestsoccer.com/wp-content/uploads/2016/05/NO-IMAGE-AVAILABLE-300x300.jpg"></a>
-			 <a><span class="white-text name">[@nome]</span></a>
-			 <a><span class="white-text email">[@email]</span></a>
+			 <a><span class="white-text name"><?php echo $admin['nome']; ?></span></a>
+			 <a><span class="white-text email"><?php echo $admin['email']; ?></span></a>
 		 </div></li>
-		 <li><a href="#!"><i class="material-icons">create</i>Editar informações</a></li>
-     <li><a href="<?php echo site_url('controller/login_form'); ?>">Deslogar</a></li>
+		 <li><a class="modal-trigger" href="#modal-perfil"><i class="material-icons">create</i>Editar informações</a></li>
+     <li><a href="<?php echo site_url('controller/logout'); ?>">Deslogar</a></li>
 	 	</ul>
 	</div>
-
+	<!-- Modal p/ editar informações pessoais -->
+	<div id="modal-perfil" class="modal">
+	<div class="modal-content">
+		<!-- Formulario pessoal -->
+			<h4>Editar informações pessoais:</h4>
+			<form action="<?php echo site_url('controller/salvar'); ?>" method="post">
+				<div class="input-field">
+					<input value="<?php echo $admin['id'] ?>" name="id" id="l-id" type="text" readonly>
+				</div>
+				<div class="input-field">
+					<input value="<?php echo $admin['nome'] ?>" id="l-nome" name="nome" type="text" class="validate" required>
+					<label for="l-nome">Nome</label>
+				</div>
+				<div class="input-field">
+					<input value="<?php echo $admin['email'] ?>" id="l-email" name="email" type="text" class="validate" required>
+					<label for="l-email">Email</label>
+				</div>
+				<div class="input-field">
+					<input value="<?php echo $admin['telefone'] ?>" id="l-telefone" name="telefone" type="text" class="validate" required>
+					<label for="l-telefone">Telefone</label>
+				</div>
+				<label>
+					<?php if ($admin['sexo'] == 'masculino') { ?>
+						<input id="u-sexo-m" name="sexo" value="masculino" type="radio" checked>
+					<?php } else{ ?>
+						<input id="u-sexo-m" name="sexo" value="masculino" type="radio">
+					<?php }?>
+					<span>Homem</span>
+				</label>
+				<label>
+					<?php if ($admin['sexo'] == 'feminino') { ?>
+						<input id="u-sexo-f" name="sexo" value="feminino" type="radio" checked>
+					<?php } else { ?>
+						<input id="u-sexo-f" name="sexo" value="feminino" type="radio">
+					<?php }?>
+					<span>Mulher</span>
+				</label>
+				<div class="wrapper">
+					<button class="btn-large" type="submit">Confirmar<i class="material-icons right">send</i></button>
+				</div>
+			</form>
+		<!-- Fim formulario pessoal -->
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+		</div>
+	</div>
+	<!-- Fim modal p/ editar informações pessoais -->
 	<ul class="sidenav" id="mobile-demo">
 		<li class="wrapper">
 			<img src="<?php echo base_url();?>/static/res/logo2.png" id="sidenavlogo" height="200">
@@ -104,14 +161,17 @@
 			</div>
 	  </div>
 	</div>
-
+	<!-- SCRIPTS PAGINA -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="<?php echo base_url();?>/static/js/index.js"></script>
 	<script src="<?php echo base_url();?>/static/materialize/js/materialize.min.js"></script>
 	<script>
 	$(document).ready(function(){
-    $('.tabs').tabs();
+    $('.sidenav').sidenav();
   });
+	$(document).ready(function(){
+		$('.modal').modal();
+	});
 	</script>
 </body>
 </html>
