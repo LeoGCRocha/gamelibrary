@@ -1,0 +1,47 @@
+.sidenav-trigger{
+  color: white;
+}
+span#span-interno{
+  font-family: 'Roboto',sans-serif;
+  font-size: 25px;
+  text-transform: uppercase;
+}
+#admin-painel{
+  text-align: center;
+}
+#admin-painel h5{
+  color: black;
+}
+#admin-painel span{
+  background-color: #8A2BE2;
+  width: 120%;
+  margin-top: 10px;
+  margin-left: -25px;
+  height: 30px;
+  border-right: 3px solid #fff;
+  border-left: 3px solid #fff;
+
+}
+#menu-info{
+  background-color: #8A2BE2;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: -10px;
+}
+.background img{
+  height: 300px;
+}
+#img-perfil{
+  border: 2px solid #8A2BE2;
+}
+#table-box{
+  color: #fff;
+  font-family: 'Roboto',sans-serif;
+  text-transform: uppercase;
+}
+#table-view-header li a{
+  color: #4B0082;
+}
+#table-view-header li a:hover{
+  text-shadow: 0px 0px 1px #8A2BE2;
+}
