@@ -1,9 +1,0 @@
-~ Babel:
-
-babel "static/pre/js/index.js" --minified -o "static/js/index.min.js"
-
-~ Sass:
-
-sass "static/pre/css/style.scss" "static/css/style.css" --no-source-map
-ou
-sass --watch "static/pre/css/style.scss" "static/css/style.css" --no-source-map
