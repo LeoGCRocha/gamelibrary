@@ -18,17 +18,17 @@
 			<div class="nav-wrapper">
 				<a href="<?php echo site_url('controller/index'); ?>" class="brand-logo left">
 					Game Library
-          <img src="<?php echo base_url(); ?>/static/res/logo.png">
+          			<img src="<?php echo base_url(); ?>/static/res/logo.png">
 				</a>
-				<?php
-				if ($user || $is_admin) { ?>
+
+				<?php if ($user || $is_admin) { ?>
 					<ul id="nav-mobile" class="right hide-on-med-and-down">
 						<li>
 							<a href="<?php echo site_url('controller/deslogar'); ?>"><i class="material-icons left">close</i>Deslogar</a>
 						</li>
 					</ul>
-				<?php
-				} else { ?>
+
+				<?php } else { ?>
 					<!-- Se entrou aqui é pq não estava logado, logo tem que ter as opções -->
 					<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
 					<ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -39,8 +39,8 @@
 							<a class="modal-trigger" href="#cadastromodal"><i class="material-icons left">person_add</i>Cadastro</a>
 						</li>
 					</ul>
-				<?php }
-				?>
+				<?php } ?>
+
 			</div>
 		</div>
 	</nav>
@@ -57,6 +57,8 @@
 			<br>
 
 			<form action="<?php echo site_url('controller/do_login'); ?>" method="post">
+
+				<input type="hidden" name="gamelibrary_csrf_token" value="<?php echo $this->security->get_csrf_hash();?>">
 
 				<div class="input-field">
 					<input id="l-email" name="email" type="text" class="validate" required>
@@ -89,6 +91,8 @@
 			<br>
 
 			<form action="<?php echo site_url('controller/do_cadastro'); ?>" method="post">
+
+				<input type="hidden" name="gamelibrary_csrf_token" value="<?php echo $this->security->get_csrf_hash();?>">
 
 				<div class="input-field">
 					<input id="u-nome" name="nome" type="text" class="validate" required>

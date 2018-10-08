@@ -106,7 +106,7 @@ class Controller extends CI_Controller {
 			$this->email->set_newline("\r\n");
 
 			// enviando o email
-			$this->email->from('webdevelopertdeveloper@gmail.com','admin');
+			$this->email->from('webdevelopertdeveloper@gmail.com','Game Library');
 			$this->email->to($user_data['email']);
 			$this->email->subject('Mensagem Automática: Inscrição Gamelibray');
 			$this->email->message('Registrou no site com sucesso :3');
